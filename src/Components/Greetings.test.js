@@ -1,4 +1,4 @@
-import { render,screen ,createRoot} from "@testing-library/react";
+import { render,screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Greetings from "./Greetings";
 
@@ -23,4 +23,11 @@ describe ("Greetings component",()=>{
             expect(outputElement).toBeInTheDocument();
             
         });
+        test("after click the button good to see you present or not",()=>{
+            render(<Greetings/>);
+            const buttonElement=screen.getByRole('button');
+            userEvent.click(buttonElement);
+            const outputElement= screen.queryByText("good to see you",{exact:false});
+            expect(outputElement).toBeNull();
+        })
 })
